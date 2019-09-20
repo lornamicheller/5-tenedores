@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import t from "tcomb-form-native";
@@ -9,13 +9,34 @@ import { LoginStruct, LoginOptions } from './app/components/forms/testForm'
 
 
 export default function App() {
+    constructor() {
+      super();
 
+      this.state = {
+        testFormValue: {
+          user: "",
+          password: ""
+        }
+      }
+    }
+
+  sendFormTest = () => {
+    console.log('Enviado.')
+  }
+
+  const { testFormValue } = this.state;
+  
   return (
     <View style={styles.container}>
         <Form 
         ref={this.formTest}
         type={LoginStruct}
-        options={LoginOptions} />
+        options={LoginOptions}
+        value={testFormValue}
+        />
+        <Button title="Login"
+         onPress={this.sendFormTest.bind(this)}
+        />
     </View>
   ); 
 }
